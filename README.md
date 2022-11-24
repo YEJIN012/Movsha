@@ -24,9 +24,9 @@
 
 ### 3. 데이터베이스 모델링(ERD)
 
-![Model_ERD.png](README_assets/99e9784c2dde40d945a5b0815e94a8c9b72c1be1.png)
+![Model_ERD.png](README_assets/f6fdd633a12d506029bd4e4cc198b56f8aa24f4c.png)
 
-![Comp_ERD.png](README_assets/22cea28ec82b5a47567477671431aa3d23eb0e22.png)
+![Comp_ERD.png](README_assets/f235fb7a7b236b5864594756150e083b3db7cec9.png)
 
     
 
