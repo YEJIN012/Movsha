@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>좋아요한 영화</h3>
+    <h3>좋아요한 영화 {{ like_movies.length }}</h3>
     <div class="likemovies-item">
       <b-row>
         <LikeMoviesItemComp 

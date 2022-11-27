@@ -40,6 +40,7 @@
         v-for="review in reviews" 
         :key="review.id" 
         :review="review"
+        @emit="getMovieDetail"
       />
     </div>
 
@@ -93,8 +94,8 @@ export default {
           },
         })
         if (response.data) {
+          console.log(response.data)
           this.movie = response.data
-          console.log(this.reviews)
         }
       } catch (error) {
         console.log(error)
@@ -111,6 +112,7 @@ export default {
         })
         if (response.data) {
           this.$store.dispatch('getuserinfo')
+          this.getMovieDetail()
         }
       } catch (error) {
         console.log(error)
@@ -129,6 +131,15 @@ export default {
   .movie-card-detail {
     background-color: white;
     border: 1px solid rgb(102, 102, 102)
+  }
+  .likes-length {
+    margin-left: 3%;
+  }
+  .reviews-icon {
+    margin-left: 6%;
+  }
+  .reviews-length {
+    margin-left: 3%;
   }
   .review-text {
     margin-top: 15px;

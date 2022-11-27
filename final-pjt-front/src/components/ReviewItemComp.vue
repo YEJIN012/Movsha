@@ -36,6 +36,7 @@
             <b-icon v-if="userLikeReviews.includes(reviewId)" @click="likeReview" style="cursor:pointer" icon="hand-thumbs-up-fill"></b-icon>
             <b-icon v-if="!userLikeReviews.includes(reviewId)" @click="likeReview" style="cursor:pointer" icon="hand-thumbs-up"></b-icon>
           </span>
+          <span>{{ likesOfReview }}</span>
         </b-col>
       </b-row>
     </b-container>
@@ -56,9 +57,6 @@ export default {
       reviewId: this.review.id,
     }
   },
-  // created() {
-  //   this.userLikeReviews
-  // },
   computed: {
     userLikeReviews() {
       return this.$store.state.userinfo.like_reviews
@@ -66,6 +64,9 @@ export default {
     profileImageOfReview() {
       return `http://localhost:8000${this.review.user.profile_image}`
     },
+    likesOfReview() {
+      return this.review.like_users.length
+    }
   },
   methods: {
     async likeReview() {
@@ -104,7 +105,7 @@ export default {
 
   }
   .like-btn {
-    margin-right: 5px;
+    margin-right: 7px;
   }
   .review-item {
     padding: 4px;
