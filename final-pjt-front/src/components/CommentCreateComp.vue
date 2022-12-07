@@ -42,7 +42,7 @@ export default {
           }
         })
         if (response.data) {
-          console.log(response.data)
+          // console.log(response.data)
           this.form.comment.content = null
           this.$emit('emit')
         }

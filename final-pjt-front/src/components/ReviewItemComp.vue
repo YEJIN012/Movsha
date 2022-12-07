@@ -1,34 +1,40 @@
 <template>
-  <div class="review-text">
-    <b-container>
-      <b-row align-h="between">
-        <b-col cols="3">
-          <span v-if="review.user.profile_image">
-            <img class="profile-img"  @click="goToReviewDetail" :src="profileImageOfReview" height="25">
-          </span>
-          <span v-else>
-            <img class="profile-img"  @click="goToReviewDetail" src="@/assets/images/anonymoususer.jpg" height="25">
-          </span>
-          &nbsp;
-          <span @click="goToReviewDetail" class="review-nickname">
-            {{ review.user.nickname }}
-          </span>
+  <div>
+    <b-container class="review-item">
+      <b-row>
+        <b-col md="10">
+          <b-row
+          @click="goToReviewDetail"
+          style="cursor:pointer">
+            <b-col md="3">
+              <span v-if="review.user.profile_image">
+                <img class="profile-img" :src="profileImageOfReview" height="25">
+              </span>
+              <span v-else>
+                <img class="profile-img" src="@/assets/images/anonymoususer.jpg" height="25">
+              </span>
+              &nbsp;
+              <span class="review-nickname">
+                {{ review.user.nickname }}
+              </span>
+            </b-col>
+            <b-col md="5">
+              <span>
+                {{ review.title }}
+              </span>
+            </b-col>
+            <b-col md="4">
+              <span class="review-createdate">
+                {{ review.created_at|moment('YYYY-MM-DD HH:mm') }}
+              </span>
+            </b-col>
+          </b-row>
         </b-col>
-        <b-col cols="5">
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <span @click="goToReviewDetail" class="review-title">
-            {{ review.title }}
-          </span>
-        </b-col>
-        <b-col cols="3">
-          <span @click="goToReviewDetail" class="review-createdate">
-            {{ review.created_at|moment('YYYY-MM-DD HH:mm') }}
-          </span>
-        </b-col>
-        <b-col cols="1">
+        
+        <b-col md="2">
           <span class="like-btn">
-            <b-icon v-if="userLikeReviews.includes(reviewId)" @click="likeReview" icon="hand-thumbs-up-fill"></b-icon>
-            <b-icon v-if="!userLikeReviews.includes(reviewId)" @click="likeReview" icon="hand-thumbs-up"></b-icon>
+            <b-icon v-if="userLikeReviews.includes(reviewId)" @click="likeReview" style="cursor:pointer" icon="hand-thumbs-up-fill"></b-icon>
+            <b-icon v-if="!userLikeReviews.includes(reviewId)" @click="likeReview" style="cursor:pointer" icon="hand-thumbs-up"></b-icon>
           </span>
         </b-col>
       </b-row>
@@ -72,16 +78,16 @@ export default {
           },
         })
         if (response.data) {
-          console.log(response.data)
+          // console.log(response.data)
           this.$store.dispatch('getuserinfo')
+          // console.log(this.review)
+          this.$emit('emit')
         }
       } catch (error) {
         console.log(error)
       }
     },
     goToReviewDetail() {
-      console.log('clicked')
-      console.log(this.reviewId)
       this.$router.push({ name: 'review', params: { id: this.reviewId } })
     }
   }
@@ -89,19 +95,18 @@ export default {
 </script>
 
 <style scoped>
-  .review-text {
-    margin-top: 8px;
-    margin-bottom: 8px;
-  }
   .review-text:hover {
     background-color: rgb(107, 104, 104);
   }
   .profile-img {
     border: 1px solid rgb(129, 129, 129);
     border-radius: 10px;
-    margin-left: 7px;
+
   }
   .like-btn {
     margin-right: 5px;
+  }
+  .review-item {
+    padding: 4px;
   }
 </style>

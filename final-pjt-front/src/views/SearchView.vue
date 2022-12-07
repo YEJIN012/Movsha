@@ -1,11 +1,13 @@
 <template>
   <div>
     <div class="search-item" v-if="searchMovies !== 0">
-      <SearchItemComp
-        v-for="(movie, idx) in movies"
-        :key="idx"
-        :movie="movie"
-      />
+      <b-row class="row-gap">
+        <SearchItemComp
+          v-for="(movie, idx) in movies"
+          :key="idx"
+          :movie="movie"
+        />
+      </b-row>
     </div>
     <div v-else>
       <NoPageComp/>
@@ -36,11 +38,10 @@ export default {
 
 <style scoped>
   .search-item {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    row-gap: 70px;
     column-gap: 60px;
     margin-top: 40px;
   }
-
+  .row-gap {
+    row-gap: 50px;
+  }
 </style>

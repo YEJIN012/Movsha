@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <b-col sm="6" md="4">
     <a href="#" class="banner_img" @click="goToDetail">
       <img :src="movie.poster_path">
       <div class="hover_text">
@@ -7,7 +7,7 @@
         <p>{{ movie.vote_average }}</p>
       </div>
     </a>
-  </div>
+  </b-col>
 </template>
 
 <script>

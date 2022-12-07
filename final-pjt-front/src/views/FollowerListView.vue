@@ -1,18 +1,18 @@
 <template>
   <div>
-    <div v-if="followers.length === 0" class="no-follower">
+    <div v-if="followers?.length === 0" class="no-follower">
       <h1>{{ userNickname }} 님의 팔로워</h1>
       <h2>팔로워가 없습니다.</h2>
     </div>
     <div v-else class="follower">
       <h1>{{ userNickname }} 님의 팔로워</h1>
-      <div class="follow-item">
+      <b-row>
         <FollowItemComp
           v-for="(follower, idx) in followers"
           :key="idx"
           :follow="follower"
         />
-      </div>
+      </b-row>
     </div>
   </div>
 </template>
@@ -52,7 +52,7 @@ export default {
         },
       });
       if (response.data) {
-        console.log(response.data);
+        // console.log(response.data);
         this.profiledetail = response.data;
       }
     },
@@ -61,14 +61,6 @@ export default {
 </script>
 
 <style scoped>
-.follow-item {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    row-gap: 70px;
-    column-gap: 60px;
-    margin-top: 40px;
-    text-align: center;
-}
 h1 {
   text-align: center;
 }

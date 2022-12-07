@@ -1,8 +1,14 @@
 import requests
 import json
+import os
+import environ
 
-TMDB_API_KEY = '8b52885daa77df3fa160626f8982cce5'
+env = environ.Env(DEBUG=(bool, True))
+environ.Env.read_env(
+    env_file=os.path.join(BASE_DIR, '.env')
+)
 
+TMDB_API_KEY = env('TMDB_API_KEY')
 def get_movie_datas(N):
     total_data = []
 

@@ -1,21 +1,38 @@
 <template>
   <div class="comment-item">
     <b-container>
-      <b-row align-h="between">
-        <b-col cols="3">
+      <b-row class="align-middle">
+        <b-col md="4">
           <span v-if="comment.user.profile_image">
-            <img class="profile-img"  @click="goToUserProfile" :src="profileImageOfComment" height="25">
+            <img
+            class="profile-img"
+            @click="goToUserProfile"
+            style="cursor:pointer"
+            :src="profileImageOfComment" height="25">
           </span>
           <span v-else>
-            <img class="profile-img"  @click="goToUserProfile" src="@/assets/images/anonymoususer.jpg" height="25">
+            <img
+            class="profile-img"
+            @click="goToUserProfile"
+            style="cursor:pointer"
+            src="@/assets/images/anonymoususer.jpg"
+            height="25">
           </span>
           &nbsp;&nbsp;
-          <span class="comment-nickname">
+          <span
+          class="comment-nickname"
+          @click="goToUserProfile"
+          style="cursor:pointer">
             {{ comment.user.nickname }}
           </span>
         </b-col>
-        <b-col cols="4">
-          <span class="comment-createdat">
+        <b-col md="4">
+          <div>
+          {{ comment.content }}
+          </div>
+        </b-col>
+        <b-col md="4">
+          <span>
             {{ comment.created_at|moment('YYYY-MM-DD HH:mm') }}
           </span>
           <span v-if="comment.user.id === userId">
@@ -24,10 +41,7 @@
         </b-col>
       </b-row>
     </b-container>
-      <div class="review-title">
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        {{ comment.content }}
-      </div>
+      
       <hr style="width:100%;height:1px;border:none;background-color:grey;">
   </div>
 </template>
@@ -86,11 +100,4 @@ export default {
     border-radius: 10px;
     border: 1px solid rgb(107, 107, 107);
   }
-  .comment-createdat {
-    margin-left: 30%;
-  }
-  .review-title {
-    margin-right: 2%;
-  }
-
 </style>

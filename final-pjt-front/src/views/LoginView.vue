@@ -22,9 +22,10 @@
         ></b-form-input>
       </b-form-group>
 
-      <b-button class="submit-btn" type="submit" variant="primary">Submit</b-button>
-
-
+      <div class="float-right submit-btn">
+        <b-button type="submit" variant="primary">Login</b-button>
+      </div>
+      
     </b-form>
   </div>
 </template>
@@ -75,6 +76,7 @@ export default {
   margin-right: 20%;
   margin-top: 10%;
   padding: 5%;
+  padding-bottom: 85px;
   padding-right: 10%;
   padding-left: 10%;
 }
@@ -86,6 +88,6 @@ export default {
 }
 .submit-btn {
   margin-top: 15px;
-  margin-left: 77%;
 }
+
 </style>

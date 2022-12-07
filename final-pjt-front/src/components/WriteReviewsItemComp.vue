@@ -1,19 +1,22 @@
 <template>
   <div> 
-    <b-container class="review-text">
-      <b-row align-h="between">      
-        <b-col cols="4">
-          <span @click="goToReviewDetail" class="review-title">
+    <b-container class="review-text align-items-center">
+      <b-row
+      @click="goToReviewDetail"
+      style="cursor:pointer"
+      align-h="between">      
+        <b-col md="4">
+          <span>
             {{ review.movie.title }}
           </span>
         </b-col>
-        <b-col cols="5">
-          <span @click="goToReviewDetail" class="review-title">
+        <b-col md="5">
+          <span>
             {{ review.title }}
           </span>
         </b-col>
-        <b-col cols="3">
-          <span @click="goToReviewDetail" class="review-createdate">
+        <b-col md="3">
+          <span>
             {{ review.created_at|moment('YYYY-MM-DD HH:mm') }}
           </span>
         </b-col>
@@ -34,8 +37,6 @@ export default {
     },
     methods: {
       goToReviewDetail() {
-        console.log('clicked')
-        console.log(this.reviewId)
         this.$router.push({ name: 'review', params: { id: this.reviewId } })
       }
     }
@@ -49,8 +50,5 @@ export default {
   .review-text {
     margin-top: 8px;
     margin-bottom: 8px;
-  }
-  .review-createdate {
-    margin-left: 50px;
   }
 </style>

@@ -16,8 +16,12 @@
                   평점 : {{ movie.vote_average }}
                 </div>
                 <div class="thumb-icon">
-                  <b-icon v-if="userLikeMovies.includes(movieId)" @click="likeMovie" icon="hand-thumbs-up-fill" scale="1.8"></b-icon>
-                  <b-icon v-if="!userLikeMovies.includes(movieId)" @click="likeMovie" icon="hand-thumbs-up" scale="1.8"></b-icon>
+                  <b-icon v-if="userLikeMovies.includes(movieId)" @click="likeMovie" icon="hand-thumbs-up-fill" scale="1.5"/>
+                  <span v-if="userLikeMovies.includes(movieId)" class="likes-length">{{ movie.like_users?.length }}</span> 
+                  <b-icon v-if="!userLikeMovies.includes(movieId)" @click="likeMovie" icon="hand-thumbs-up" scale="1.5"/>
+                  <span v-if="!userLikeMovies.includes(movieId)" class="likes-length">{{ movie.like_users?.length }}</span> 
+                  <b-icon icon="chat-dots" scale="1.5" class="reviews-icon"/>
+                  <span class="reviews-length">{{ movie.reviews_count }}</span> 
                 </div>
                 <div v-if="movie.overview" class="overview">
                   {{ overview }}
@@ -70,6 +74,9 @@ export default {
     },
     overview() {
       return this.movie.overview.substring(440, 0) + '...'
+    },
+    movieLikeUsersNum() {
+      return this.movie.like_users.length
     }
   },
   created() {
@@ -103,7 +110,6 @@ export default {
           },
         })
         if (response.data) {
-          console.log(response.data)
           this.$store.dispatch('getuserinfo')
         }
       } catch (error) {
@@ -133,6 +139,8 @@ export default {
     background-color: rgb(136, 136, 138);
     border: 1px solid rgb(87, 87, 90);
     border-radius: 6px;
+    padding: 13px;
+    padding-bottom: 13px;
   }
   .review-create {
     margin: 15px;

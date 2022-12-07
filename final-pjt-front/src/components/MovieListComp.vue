@@ -5,13 +5,13 @@
       <b-carousel
         id="carousel-1"
         v-model="slide1"
-        :interval="4000"
+        :interval="3000"
         controls
         indicators
         width="1024"
         height="480"
         background="#ababab"
-        style="text-shadow: 1px 1px 2px #333;"
+
         @sliding-start="onSlideStart"
         @sliding-end="onSlideEnd"
       >
@@ -26,13 +26,12 @@
       <b-carousel
         id="carousel-1"
         v-model="slide2"
-        :interval="4000"
+        :interval="3000"
         controls
         indicators
         width="1024"
         height="480"
         background="#ababab"
-        style="text-shadow: 1px 1px 2px #333;"
         @sliding-start="onSlideStart"
         @sliding-end="onSlideEnd"
       >
@@ -80,14 +79,12 @@ export default {
           return b.vote_average - a.vote_average 
         })
         this.lastest_movies = newlist3.slice(0,10)
-        console.log('success')
       },
       mostlikesMovies() {
         let newlist = this.movies.sort((a,b)=>{
           return b.like_users.length - a.like_users.length
         })
         this.mostlikes_movies = newlist.slice(0,10)
-        console.log('success2')
       },
       async getMovieList() {
         try {

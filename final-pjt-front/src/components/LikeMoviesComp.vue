@@ -2,11 +2,13 @@
   <div>
     <h3>좋아요한 영화</h3>
     <div class="likemovies-item">
-      <LikeMoviesItemComp
+      <b-row>
+        <LikeMoviesItemComp 
         v-for="(likemovie, idx) in like_movies"
         :key="idx"
         :likemovie_pk="likemovie"
-      />
+        />
+      </b-row>
     </div>
   </div>
 </template>
@@ -29,8 +31,7 @@ export default {
 
 <style scoped>
   .likemovies-item {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    margin-left: 20px;
   }
 
 </style>

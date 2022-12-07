@@ -37,7 +37,7 @@
         ></b-form-input>
       </b-form-group>
 
-      <b-button class="submit-btn" type="submit" variant="primary">Submit</b-button>
+      <b-button class="float-right submit-btn" type="submit" variant="primary">Submit</b-button>
 
 
     </b-form>
@@ -92,6 +92,7 @@ export default {
     margin-right: 20%;
     margin-top: 10%;
     padding: 5%;
+    padding-bottom: 85px;
     padding-left: 10%;
     padding-right: 10%;
   }
@@ -109,7 +110,5 @@ export default {
   }
   .submit-btn {
     margin-top: 15px;
-    margin-left: 77%;
-
   }
 </style>

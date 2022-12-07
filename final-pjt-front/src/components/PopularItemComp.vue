@@ -1,29 +1,33 @@
 <template>
-  <div>
-    
     <b-carousel-slide
       :img-src="poster_path"
-      class="carousel_back"
-    >
-      <b-card @click="goToDetail" class="overflow-hidden">
-        <b-row no-gutters>
-          <b-col md="5" class="card-image-wrapper">
-            <img :src="poster_path"  alt="Image" class="card_img" height="254">
+      class="carousel"
+    > 
+    <div class="card">
+      <b-row
+      @click="goToDetail"
+      
+      style="cursor:pointer"
+      >
+          <b-col v-if="large_width" xl="3" align-self="center">
+            <img :src="poster_path" alt="Image" class="card_img">
           </b-col>
-          <b-col md="6">
-            <b-card-body :title="title">
-              <b-card-text >
+          <b-col xl="1"><br></b-col>
+          <b-col xl="8" class="text-center">
+              <h5>
+                {{ title }}
+              </h5>
                 평점: {{ vote_average }}
-              </b-card-text>
-              <b-card-text class="mt-2" v-if="movie.overview">
+                <br>
+                <br>
+              <div
+              v-if="movie.overview">
                 {{ overview }}
-              </b-card-text>
-            </b-card-body>
+              </div>
           </b-col>
-        </b-row>
-      </b-card>
+      </b-row>
+    </div>
     </b-carousel-slide>
-  </div>
 </template>
 
 
@@ -34,10 +38,16 @@ export default {
     data() {
       return {
         slide: 0,
-        sliding: null
+        sliding: null,
+        windowWidth: window.innerWidth,
       }
     },
     props: ['movie',],
+    mounted() {
+      window.addEventListener('resize', () => {
+        this.windowWidth = window.innerWidth
+      })
+    },
     computed: {
       poster_path() {
         return this.movie.poster_path
@@ -53,11 +63,14 @@ export default {
       },
       overview() {
         return this.movie.overview.substring(50, 0) + '...'
+      },
+      large_width() {
+        return this.windowWidth >= 1200
       }
     },
+    
     methods: {
       goToDetail() {
-        console.log(this.movie.id)
         this.$router.push({ name: 'movie', params:{id:this.movie.id} })
       },
     }
@@ -67,24 +80,32 @@ export default {
 
 
 <style scoped>
-  .carousel_back {
+  .carousel {
     width: 100%;
     height: 40vh;
+    padding-bottom: 100px;
   }
   .card-img-wrapper {
     display:flex;
   }
   .card_img {
-    /* height: 252px;
-    width: 240px; */
+    scale: 100%;
+    max-width: 160px;
+    height: 25vh;
     border-radius: 8px;
-    justify-content: center;
     align-items: center;
   }
   .card {
     height: 30vh;
     background-color: rgba(0,0,0,0.8);
-
+    overflow: hidden;
+    padding: 2vh;
+    padding-bottom: 2vh;
+    display: grid;
+    align-items: center;
+  }
+  .text-center {
+    margin: auto;
   }
 
 </style>

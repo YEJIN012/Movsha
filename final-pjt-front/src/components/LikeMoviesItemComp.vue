@@ -3,9 +3,9 @@
     <b-card
       no-body
       @click="goToDetail"
-      img-alt="Image"
-    >
-      <img :src="likemovie.poster_path" alt="" height="200rem">
+      style="cursor:pointer"
+      >
+      <img :src="likemovie.poster_path" alt="poster" height="200rem" width="133.33">
     </b-card>
   </div>
 </template>
@@ -51,5 +51,8 @@ export default {
 </script>
 
 <style scoped>
+* {
+  display: grid;
+}
 
 </style>

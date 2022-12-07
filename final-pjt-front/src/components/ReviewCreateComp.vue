@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-form v-on:submit.prevent="createReview" class="review-form">
+    <b-form @submit.prevent="createReview" class="review-form">
 
       <b-form-group class="star-rate">
         <div class="star-rating">
@@ -9,6 +9,7 @@
             v-for="index in 5"
             :key="index"
             @click="check(index)"
+            style="cursor:pointer"
             v-model="form.review.rank"
           >
             <span v-if="index <= form.review.rank"><b-icon icon="star-fill" scale="1.5"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -36,7 +37,7 @@
         ></b-form-input>
       </b-form-group>
 
-      <div class="submit-btn">
+      <div class="float-right submit-btn">
         <b-button type="submit" variant="primary">Submit</b-button>
       </div>
 
@@ -65,11 +66,9 @@ export default {
   ],
   methods: {
     async createReview() {
-      console.log('create')
       const title = this.form.review.title
       const content = this.form.review.content
       const rank = Number(this.form.review.rank)
-      console.log(rank)
       const data = {
         title,
         content,
@@ -85,7 +84,7 @@ export default {
           },
         })
         if (response.data) {
-          console.log(response.data)
+          // console.log(response.data)
           this.form.review.title = null
           this.form.review.content = null
           this.form.review.rank = null
@@ -97,7 +96,7 @@ export default {
     },
     check(index) {
       this.form.review.rank = index
-      console.log(this.form.review.rank)
+      // console.log(this.form.review.rank)
     }
   }
 }
@@ -108,6 +107,7 @@ export default {
   border: 1px solid white;
   border-radius: 8px;
   padding: 4%;
+  padding-bottom: 80px;
 }
 .star-rate {
   margin-left: 5px;
@@ -120,6 +120,6 @@ export default {
   margin-bottom: 3%;
 }
 .submit-btn {
-  margin-left: 90%;
+  margin-top: 15px;
 }
 </style>

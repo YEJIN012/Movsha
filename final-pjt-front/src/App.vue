@@ -41,7 +41,10 @@ export default {
   background-color: rgb(34, 34, 34);
   color: white;
   display: grid;
-  grid-template-rows: 0.5fr 8.2fr 0.8fr
+  grid-template-rows: 0.5fr 8.2fr 0.8fr;
+  width:100%;
+  overflow-x:scroll;
+  position: relative;
 }
 main {
   margin-left: 27%;

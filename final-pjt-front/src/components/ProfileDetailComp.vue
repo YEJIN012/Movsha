@@ -8,18 +8,18 @@
       <img class="profile-image" src="@/assets/images/anonymoususer.jpg" height="150">
     </span>
     <div v-if="profileDetail.username === userInfo.username">
-      <label for="imgFile" class="upload-profile-img">프로필 사진 업로드</label>
+      <label for="imgFile" class="upload-profile-img" style="cursor:pointer">프로필 사진 업로드</label>
       <input type="file" accept="image/jpeg, image/jpg, image/png" id="imgFile" v-on:change="selectImage" style="display:none">
       <span class="update-btn" v-if="selectedimage" v-on:click="changeImage">수정</span>
     </div>
     <div class="followers-followings">
-      <span @click="goToFollowerList"> 팔로워 {{ followersCount }} |</span>
-      <span @click="goToFollowingList"> 팔로잉 {{ followingsCount }}</span>
+      <span @click="goToFollowerList" style="cursor:pointer"> 팔로워 {{ followersCount }} |</span>
+      <span @click="goToFollowingList" style="cursor:pointer"> 팔로잉 {{ followingsCount }}</span>
     </div>
     
     <div v-if="profileDetail.username !== this.$store.state.userinfo.username" class="follow-btn">
-      <b-button v-if="profileDetail.followers.includes(userInfo.id)" @click="follow">언팔로우 &nbsp;<b-icon icon="person-check-fill"/></b-button>
-      <b-button v-if="!profileDetail.followers.includes(userInfo.id)" @click="follow">팔로우 &nbsp;<b-icon icon="person"/></b-button>
+      <b-button v-if="profileDetail.followers?.includes(userInfo.id)" @click="follow" style="cursor:pointer">언팔로우 &nbsp;<b-icon icon="person-check-fill"/></b-button>
+      <b-button v-if="!profileDetail.followers?.includes(userInfo.id)" @click="follow" style="cursor:pointer">팔로우 &nbsp;<b-icon icon="person"/></b-button>
     </div>
 
     <br>
@@ -29,8 +29,8 @@
     <br>
     <hr>
     <br>
-    <h3 v-if="profileDetail.username === userInfo.username">내가 쓴 리뷰</h3>
-    <h1 v-if="profileDetail.username !== userInfo.username">{{ profileDetail.nickname }} 님의 리뷰</h1>
+    <h3 v-if="profileDetail.username === userInfo.username">내가 쓴 리뷰 {{ writereviews?.length }}</h3>
+    <h3 v-if="profileDetail.username !== userInfo.username">{{ profileDetail.nickname }} 님의 리뷰 {{writereviews?.length }}</h3>
     <div class="review-list-wrapper">
       <WriteReviewsItemComp 
         v-for="review in writereviews" 
@@ -78,10 +78,10 @@ export default {
         return this.$store.state.userinfo
       },
       followersCount() {
-        return this.profiledetail.followers.length
+        return this.profiledetail.followers?.length
       },
       followingsCount() {
-        return this.profiledetail.followings.length
+        return this.profiledetail.followings?.length
       },
       // 배열
       likeMovies() {
@@ -104,10 +104,8 @@ export default {
         this.profiledetail = response.data
         // like_movies는 movie_PK 순서대로 배열 받아와짐...
         this.likemovies = arrayShuffle(this.profiledetail.like_movies)
-        console.log(this.likemovies)
         // 최신 댓글순
         this.writereviews = this.profiledetail.review_set.reverse()
-        console.log(this.writereviews)
       }
     },
       selectImage(event) {
@@ -138,7 +136,7 @@ export default {
             data: this.selectedimage,
           })
           if (response.data) {
-            console.log(response.data)
+            // console.log(response.data)
             this.getProfile()
             this.selectedimage=''
           }
@@ -162,7 +160,7 @@ export default {
           },
         })
         if (response.data) {
-          console.log(response.data)
+          // console.log(response.data)
           const updateprofile = await axios({
           method: 'get',
           url: `${this.$store.state.API_URL}api/v1/profile/${this.$route.params.id}/`,
@@ -172,9 +170,9 @@ export default {
         })
         if (updateprofile.data) {
           this.profiledetail = updateprofile.data
-          console.log(this.profileDetail)
-          console.log(this.profileDetail.followers)
-          console.log(this.profileDetail.followings)
+          // console.log(this.profileDetail)
+          // console.log(this.profileDetail.followers)
+          // console.log(this.profileDetail.followings)
           this.$store.dispatch('getuserinfo')
         }
         }

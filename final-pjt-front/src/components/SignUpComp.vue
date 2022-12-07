@@ -13,7 +13,7 @@
       pill
       variant="primary"
       class="signup-btn"
-      v-on:click="goSignUp">
+      @click="goSignUp">
       회원가입
     </b-button>
   </div>

@@ -2,13 +2,13 @@
   <div class="recommend-view">
     <h1>{{ userNickname }} 님을 위한 영화 추천</h1>
     <br>
-    <div class="search-item">
+    <b-row class="row-gap">
       <RecommendItemComp
         v-for="(movie_pk, idx) in recommend_movies"
         :key="idx"
         :movie_pk="movie_pk"
       />
-    </div>
+    </b-row>
   </div>
 </template>
 
@@ -50,7 +50,7 @@ export default {
             let x = response.data.length
             let myfollowings = this.$store.state.userinfo.followings
             let myfollowingsnum = myfollowings.length
-            console.log(myfollowingsnum)
+            // console.log(myfollowingsnum)
             if (myfollowingsnum === 0) {
               swal('팔로잉 정보가 없습니다!', '비슷한 취향의 유저를 팔로우하세요.', 'warning')
               return
@@ -87,7 +87,7 @@ export default {
               }
               this.recommend_movies = sorted_index_list.slice(0,10)
             }
-            console.log(this.recommend_movies)
+            // console.log(this.recommend_movies)
           }
         } catch(err) {
         console.log(err)
@@ -101,13 +101,11 @@ export default {
 <style scoped>
   .recommend-view {
     text-align: center;
+    margin-bottom: 50px;
   }
-  .search-item {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    row-gap: 70px;
-    column-gap: 60px;
-    margin-top: 40px;
+  .row-gap {
+    row-gap: 50px;
+    margin-top: 30px;
   }
 </style>
 

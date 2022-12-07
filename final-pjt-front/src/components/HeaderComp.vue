@@ -125,7 +125,6 @@ export default {
 }
 .logout-router {
   justify-content: right;
-  margin-right: 10px;
 }
 .search-router {
   width: 180px;
