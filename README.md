@@ -22,11 +22,11 @@
   
   * 프론트 : 디자인(다크모드 등), 미리 기획해둔 모든 기능을 구현했습니다.
 
-### 3. 데이터베이스 모델링(ERD)
+### 3. ERD 및 Component Architecture
 
-![Model_ERD.png](README_assets/f6fdd633a12d506029bd4e4cc198b56f8aa24f4c.png)
+![Model_ERD.png](https://user-images.githubusercontent.com/109276824/222263297-b6236724-3a58-4b0d-8124-152d10471ce6.png)
 
-![Comp_ERD.png](README_assets/f235fb7a7b236b5864594756150e083b3db7cec9.png)
+![Comp_ERD.png](https://user-images.githubusercontent.com/109276824/222263637-eafd00da-3a41-4cf0-bc55-5ae5cc68f35d.png)
 
     
 
@@ -63,6 +63,10 @@
 
 * 영화에 대한 후기를 작성하고 그에 대한 댓글을 남겨 유저끼리 소통한다.
 * 후기가 본인과 잘 맞는 유저라면 팔로우하고 나의 팔로잉이 모여 팔로잉 유저들이 리뷰점수를 높게 준 영화들을 추천받는다. 
+
+### 7. 시연영상
+
+[Movsha 시연영상 - YouTube](https://youtu.be/7E0ob7r0SdM)
 
 ### 6. 느낀점
 
